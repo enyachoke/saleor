@@ -196,6 +196,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.postgres',
     'django.forms',
+    'django_payments_cod',
 
     # Local apps
     'saleor.account',
@@ -339,7 +340,7 @@ PAYMENT_HOST = get_host
 PAYMENT_MODEL = 'order.Payment'
 
 PAYMENT_VARIANTS = {
-    'default': ('payments.dummy.DummyProvider', {})}
+    'default': ('django_payments_cod.CODProvider', {})}
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
@@ -349,7 +350,8 @@ if not CACHES['default']['BACKEND'].endswith('LocMemCache'):
     SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 CHECKOUT_PAYMENT_CHOICES = [
-    ('default', 'Dummy provider')]
+    ('default', 'Cash On Delivery')
+]
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'}
